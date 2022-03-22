@@ -1,0 +1,393 @@
+{
+	"info": {
+		"_postman_id": "30b8df78-ad31-45bd-b9cb-0ed56a93a4cc",
+		"name": "Learning Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Covid Updates",
+			"item": [
+				{
+					"name": "POST Country Updates",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2022-03-23\",\r\n    \"total_cases\": 172901,\r\n    \"new_cases\": 185,\r\n    \"new_cases_smoothed\": 197.429,\r\n    \"total_deaths\": 7574,\r\n    \"new_deaths\": 5,\r\n    \"new_deaths_smoothed\": 8.714,\r\n    \"total_cases_per_million\": 4340.383,\r\n    \"new_cases_per_million\": 4.644,\r\n    \"new_cases_smoothed_per_million\": 4.956,\r\n    \"total_deaths_per_million\": 190.132,\r\n    \"new_deaths_per_million\": 0.126,\r\n    \"new_deaths_smoothed_per_million\": 0.219,\r\n    \"reproduction_rate\": 0.86,\r\n    \"new_tests_smoothed\": 1301,\r\n    \"new_tests_smoothed_per_thousand\": 0.033,\r\n    \"positive_rate\": 0.1518,\r\n    \"tests_per_case\": 6.6,\r\n    \"tests_units\": \"tests performed\",\r\n    \"new_vaccinations_smoothed\": 16194,\r\n    \"new_vaccinations_smoothed_per_million\": 407,\r\n    \"new_people_vaccinated_smoothed\": 13900,\r\n    \"new_people_vaccinated_smoothed_per_hundred\": 0.035,\r\n    \"stringency_index\": 19.44\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/covid/updates/LWAD",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"covid",
+								"updates",
+								"LWAD"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Country Updates",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2022-03-23\",\r\n    \"total_cases\": 172903,\r\n    \"new_cases\": 185,\r\n    \"new_cases_smoothed\": 197.429,\r\n    \"total_deaths\": 7574,\r\n    \"new_deaths\": 5,\r\n    \"new_deaths_smoothed\": 8.714,\r\n    \"total_cases_per_million\": 4340.383,\r\n    \"new_cases_per_million\": 4.644,\r\n    \"new_cases_smoothed_per_million\": 4.956,\r\n    \"total_deaths_per_million\": 190.132,\r\n    \"new_deaths_per_million\": 0.126,\r\n    \"new_deaths_smoothed_per_million\": 0.219,\r\n    \"reproduction_rate\": 0.86,\r\n    \"new_tests_smoothed\": 1301,\r\n    \"new_tests_smoothed_per_thousand\": 0.033,\r\n    \"positive_rate\": 0.1518,\r\n    \"tests_per_case\": 6.6,\r\n    \"tests_units\": \"tests performed\",\r\n    \"new_vaccinations_smoothed\": 16194,\r\n    \"new_vaccinations_smoothed_per_million\": 407,\r\n    \"new_people_vaccinated_smoothed\": 13900,\r\n    \"new_people_vaccinated_smoothed_per_hundred\": 0.035,\r\n    \"stringency_index\": 19.44\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/covid/updates/AFG",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"covid",
+								"updates",
+								"AFG"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Country Updates",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2022-03-23\",\r\n    \"total_cases\": 172901,\r\n    \"new_cases\": 185,\r\n    \"new_cases_smoothed\": 197.429,\r\n    \"total_deaths\": 7574,\r\n    \"new_deaths\": 5,\r\n    \"new_deaths_smoothed\": 8.714,\r\n    \"total_cases_per_million\": 4340.383,\r\n    \"new_cases_per_million\": 4.644,\r\n    \"new_cases_smoothed_per_million\": 4.956,\r\n    \"total_deaths_per_million\": 190.132,\r\n    \"new_deaths_per_million\": 0.126,\r\n    \"new_deaths_smoothed_per_million\": 0.219,\r\n    \"reproduction_rate\": 0.86,\r\n    \"new_tests_smoothed\": 1301,\r\n    \"new_tests_smoothed_per_thousand\": 0.033,\r\n    \"positive_rate\": 0.1518,\r\n    \"tests_per_case\": 6.6,\r\n    \"tests_units\": \"tests performed\",\r\n    \"new_vaccinations_smoothed\": 16194,\r\n    \"new_vaccinations_smoothed_per_million\": 407,\r\n    \"new_people_vaccinated_smoothed\": 13900,\r\n    \"new_people_vaccinated_smoothed_per_hundred\": 0.035,\r\n    \"stringency_index\": 19.44\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/covid/updates/AFG/2022-03-23",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"covid",
+								"updates",
+								"AFG",
+								"2022-03-23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Country Updates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/api/covid/updates/LWAD?page=1&limit=1000",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"covid",
+								"updates",
+								"LWAD"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Country",
+			"item": [
+				{
+					"name": "GET Countries",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjQ3OTE1MDU5fQ.Tt63uIT1YQMgy0vHT01URimMeRuD0H_adGNtMO-NyEg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/api/countries?page=1&limit=239",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"countries"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "239"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Country",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"continent\": \"Middle East\",\r\n    \"location\": \"Somewhere in Middle East\",\r\n    \"population\": 100000000,\r\n    \"population_density\": 255.573,\r\n    \"median_age\": 23.5,\r\n    \"aged_65_older\": 4.495,\r\n    \"aged_70_older\": 2.78,\r\n    \"gdp_per_capita\": 5034.708,\r\n    \"extreme_poverty\": 4,\r\n    \"cardiovasc_death_rate\": 423.031,\r\n    \"diabetes_prevalence\": 8.35,\r\n    \"female_smokers\": 2.8,\r\n    \"male_smokers\": 36.7,\r\n    \"handwashing_facilities\": 59.607,\r\n    \"hospital_beds_per_thousand\": 0.6,\r\n    \"life_expectancy\": 67.27,\r\n    \"human_development_index\": 0.557\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/countries/LWAD",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"countries",
+								"LWAD"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Country",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"continent\": \"Middle East\",\r\n    \"location\": \"Little Wadiya\",\r\n    \"population\": 100000000,\r\n    \"population_density\": 255.573,\r\n    \"median_age\": 23.5,\r\n    \"aged_65_older\": 4.495,\r\n    \"aged_70_older\": 2.78,\r\n    \"gdp_per_capita\": 5034.708,\r\n    \"extreme_poverty\": 4,\r\n    \"cardiovasc_death_rate\": 423.031,\r\n    \"diabetes_prevalence\": 8.35,\r\n    \"female_smokers\": 2.8,\r\n    \"male_smokers\": 36.7,\r\n    \"handwashing_facilities\": 59.607,\r\n    \"hospital_beds_per_thousand\": 0.6,\r\n    \"life_expectancy\": 67.27,\r\n    \"human_development_index\": 0.557\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/countries/LWAD",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"countries",
+								"LWAD"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Country",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/api/countries/LWAD",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"countries",
+								"LWAD"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"8i4FJdncNs5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/users/login",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"zaydi\",\r\n    \"password\": \"testing1231321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/users/",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EDIT User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"testing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/users/",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"zaydi\",\r\n    \"password\": \"testing1231321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/users/zaydi1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"zaydi1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://localhost:3000"
+		}
+	]
+}
