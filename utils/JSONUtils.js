@@ -1,5 +1,6 @@
 import _ from 'underscore';
 import fs from 'fs';
+import jwt from 'jsonwebtoken';
 
 export const JSONUtil = (
     function () {
@@ -20,11 +21,18 @@ export const JSONUtil = (
 )();
 
 class JSONUtils {
-    #model = undefined;
+    #model = {};
     #result = undefined;
     #queue = undefined;
     constructor(model) {
-        this.#model = model;
+        if (!model.users) {
+            this.#model.users = [{ username: "admin", password: "8i4FJdncNs5", verificationToken: null }];
+            this.#model.covidData = model;
+            this.#syncWithFile();
+        }
+        else {
+            this.#model = model;
+        }
         this.#queue = Promise.resolve();
     }
     /**
@@ -46,13 +54,79 @@ class JSONUtils {
         fs.writeFileSync('./models/covid.json', JSON.stringify(this.#model));
     }
 
+    getUsers() {
+        this.#chain(() => {
+            this.#result = Object.assign([], this.#model.users);
+        });
+        return this;
+    }
+    /**
+     * 
+     * @param {{}} data {username, password} that you want to use.
+     * @returns 
+     */
+    addUser(data) {
+        this.#chain(() => {
+            data.verificationToken = jwt.sign({ username: data.username }, process.env.JWT_SECRET);
+            this.#model.users.push(data);
+            this.#syncWithFile();
+            this.#result = Object.assign({}, data);
+        });
+        return this;
+    }
+
+    /**
+     * 
+     * @param {{}} data enter {username, password} to generate a specific token for you.
+     * @returns {Object} of validated user data. 
+     */
+    login(data) {
+        this.#chain(() => {
+            data.verificationToken = jwt.sign({ username: data.username }, process.env.JWT_SECRET);
+            this.editUser({ username: data.username, verificationToken: data.verificationToken }).value();
+            this.#result = data;
+        });
+        return this;
+    }
+    /**
+     * 
+     * @param {{}} data data that you want to edit in user.
+     * @returns the same user
+     */
+    editUser(data) {
+        this.#chain(() => {
+            this.#model.users = this.#model.users.map(u => {
+                if (u.username === data.username) {
+                    u = { ...u, ...data };
+                }
+                return u;
+            });
+            this.#syncWithFile();
+            this.#result = Object.assign({}, data);
+        });
+        return this;
+    }
+
+    /**
+     * 
+     * @param {String} username username that you want to remove.
+     * @returns the same user
+     */
+    deleteUser(username) {
+        this.#chain(() => {
+            this.#model.users = this.#model.users.filter(u => u.username !== username);
+            this.#syncWithFile();
+        });
+        return this;
+    }
+
     /**
      * 
      * @returns {this} returns an array of all countries that exists in the list. Call value() afterwards if you don't want to use other chain functions.
      */
     countryList() {
         this.#chain(() => {
-            this.#result = Object.keys(this.#model);
+            this.#result = Object.keys(this.#model.covidData);
         });
         return this;
     }
@@ -65,9 +139,9 @@ class JSONUtils {
      */
     addCountry(countryName, data) {
         this.#chain(() => {
-            this.#model[countryName] = data;
+            this.#model.covidData[countryName] = data;
             this.#syncWithFile();
-            this.#result = Object.assign({}, this.#model[countryName]);
+            this.#result = Object.assign({}, this.#model.covidData[countryName]);
         });
         return this;
     }
@@ -80,12 +154,12 @@ class JSONUtils {
     */
     editCountry(countryName, data) {
         this.#chain(() => {
-            this.#model[countryName] = {
-                ...this.#model[countryName],
+            this.#model.covidData[countryName] = {
+                ...this.#model.covidData[countryName],
                 ...data
             };
             this.#syncWithFile();
-            this.#result = Object.assign({}, this.#model[countryName]);
+            this.#result = Object.assign({}, this.#model.covidData[countryName]);
         });
         return this;
     }
@@ -97,9 +171,9 @@ class JSONUtils {
     */
     deleteCountry(countryName, data) {
         this.#chain(() => {
-            delete this.#model[countryName];
+            delete this.#model.covidData[countryName];
             this.#syncWithFile();
-            this.#result = Object.assign({}, this.#model[countryName]);
+            this.#result = Object.assign({}, this.#model.covidData[countryName]);
         });
         return this;
     }
@@ -111,7 +185,7 @@ class JSONUtils {
     */
     getDataByCountry(countryName) {
         this.#chain(() => {
-            this.#result = Object.assign({}, this.#model[countryName]);
+            this.#result = Object.assign({}, this.#model.covidData[countryName]);
         });
         return this;
     }
@@ -124,9 +198,9 @@ class JSONUtils {
      */
     addDataToCountry(countryName, data) {
         this.#chain(() => {
-            this.#model[countryName].data.push(data);
+            this.#model.covidData[countryName].data.push(data);
             this.#syncWithFile();
-            this.#result = Object.assign({}, this.#model[countryName]);
+            this.#result = Object.assign({}, this.#model.covidData[countryName]);
         });
         return this;
     }
@@ -140,7 +214,7 @@ class JSONUtils {
      */
     editDataInCountry(countryName, date, data) {
         this.#chain(() => {
-            let countryData = this.#model[countryName];
+            let countryData = this.#model.covidData[countryName];
             countryData.data = countryData.data.map(d => {
                 if (d.date === date) {
                     d = {
@@ -151,7 +225,7 @@ class JSONUtils {
                 return d;
             });
             this.#syncWithFile();
-            this.#result = Object.assign({}, this.#model[countryName]);
+            this.#result = Object.assign({}, this.#model.covidData[countryName]);
         });
         return this;
     }
@@ -165,10 +239,10 @@ class JSONUtils {
      */
     deleteDataInCountry(countryName, date) {
         this.#chain(() => {
-            let countryData = this.#model[countryName];
+            let countryData = this.#model.covidData[countryName];
             countryData.data = countryData.data.filter(d => d.date !== date);
             this.#syncWithFile();
-            this.#result = Object.assign({}, this.#model[countryName]);
+            this.#result = Object.assign({}, this.#model.covidData[countryName]);
         });
         return this;
     }

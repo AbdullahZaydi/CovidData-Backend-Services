@@ -1,12 +1,26 @@
 import { createRequire } from "module";
+import { JSONUtil } from "./JSONUtils.js";
+
 const require = createRequire(import.meta.url);
 
-export function verifyToken(req, res, next) {
+export async function verifyToken(req, res, next) {
     const bearerHeader = req.headers['authorization'];
     if (typeof bearerHeader !== "undefined") {
+        const ModelUtils = JSONUtil.getInstance();
+
         const bearerToken = bearerHeader.split(" ");
         req.token = bearerToken[1];
-        next();
+
+        const [user] = await ModelUtils.getUsers().where({ verificationToken: req.token }).value();
+        if (!user) {
+            res.status(401).json({
+                status: "error",
+                message: "Sorry! This token is not authorized!"
+            });
+        } else {
+            req.user = Object.assign({}, user);
+            next();
+        }
     } else {
         res.status(401).json({ message: "please Insert Jwt" });
     }
@@ -33,7 +47,7 @@ export function paginate(records, page = 1, limit = 10) {
         limit: limit,
         totalRecords: records.length
     };
-    
+
     results.result = records.slice(startIndex, endIndex);
     return results;
 }
